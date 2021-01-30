@@ -1,3 +1,4 @@
+#include <stdbool.h>
 #include "date.h"
 
 /**
@@ -10,16 +11,15 @@ typedef struct session_data_struct {
 } session_data;
 
 /**
- * Struct for storing session list node data.
+ * Struct for storing a session list node.
  */
-
 struct sessionlist_node_struct {
     session_data data;
-    sessionlist_node_struct * next;
+    struct sessionlist_node_struct * next;
 };
 
-/** 
- * Datatype for a list node.
+/**
+ * Datatype for one node in the session list.
  */
 typedef struct sessionlist_node_struct sessionlist_node;
 
@@ -28,3 +28,14 @@ typedef struct sessionlist_node_struct sessionlist_node;
  */
 typedef sessionlist_node * sessionlist;
 
+/**
+ * Function for creating a session list.
+ * @returns the new, empty list.
+ */
+sessionlist list_create ();
+
+/**
+ * Function for testing if a list is empty.
+ * @returns true if empty, false otherwise.
+ */
+bool list_is_empty (sessionlist list);

@@ -1,11 +1,16 @@
-#include "date.h"
+#include <stdlib.h>
+#include "sessionlist.h"
 
-/**
- * Datatype for storing session data, i.e. date, duration in minutes and exercise type.
- */
-typedef struct session_data_struct {
-    date date;
-    int duration;
-    int exercise_type;
-} session_data;
+sessionlist list_create (){
+    return NULL;
+}
+
+bool list_is_empty (sessionlist list){
+    if (list == NULL){
+        return true;
+    }
+    else {
+        return false;
+    }
+}
 
