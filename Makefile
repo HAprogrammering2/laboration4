@@ -11,15 +11,16 @@ CFLAGS = -Wall -pedantic -D DEBUGON
 CC = gcc
 
 # Targets section
-
+# Implicit target for object files
 %.o: %.c
 	$(CC) $(CFLAGS) -c -o $@ $< 
 
+# Target for the binary
 $(BIN): $(OBJ) 
 	$(CC) $(CFLAGS) $(OBJ) -o $(BIN)
 
 clean:
-	rm $(OBJ) $(PROG)
+	rm -rf $(OBJ) $(BIN)
 
 all: $(BIN)
 
