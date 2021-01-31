@@ -1,12 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "sessionlist.h"
-
-#ifdef DEBUGON
-#define DEBUG(msg) printf("DEBUG: %s\n", msg)
-#else
-#define DEBUG(msg)
-#endif
+#include "debug.h"
 
 sessionlist list_create (){
     return NULL;

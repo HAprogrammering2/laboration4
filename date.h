@@ -1,3 +1,5 @@
+#ifndef DATEH
+#define DATEH
 #include <stdbool.h>
 
 /**
@@ -81,3 +83,5 @@ date get_n_days_previous (date a_date, int days);
  * @param a_date Pointer to the date to be set to today's date.
  */
 void set_to_today (date * a_date);
+
+#endif
