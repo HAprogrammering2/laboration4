@@ -70,10 +70,14 @@ int main(){
 
     TEST_CASE ("Delete all of type 2");
     remove_all_of_type(&my_list, 2);
-    VERIFY(!list_is_empty(my_list), "list is empty");
+    VERIFY(!list_is_empty(my_list), "list is not empty");
     list_print_all(my_list);
     
 
+    TEST_CASE("Destroy list");
+    list_destroy(&my_list);
+    VERIFY(list_is_empty(my_list), "list is empty");
+    list_print_all(my_list);
 
 
 }

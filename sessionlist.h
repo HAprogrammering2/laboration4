@@ -35,6 +35,12 @@ typedef sessionlist_node * sessionlist;
 sessionlist list_create ();
 
 /**
+ * Function for destroying a session list. Deletes all elements.
+ * @param list The list to be emptied.
+ */
+void list_destroy (sessionlist * list);
+
+/**
  * Function for testing if a list is empty.
  * @returns true if empty, false otherwise.
  */

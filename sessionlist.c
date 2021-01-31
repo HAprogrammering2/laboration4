@@ -125,3 +125,25 @@ void remove_all_of_type (sessionlist * listptr, int exercise_type){
         }
     }
 }
+
+void list_destroy (sessionlist * listptr){
+    sessionlist_node * current;
+    sessionlist_node * tbdeleted;
+
+    current = *listptr;
+
+    while (current != NULL){
+        DEBUG("list_destroy: deleting element");
+        // Store element to be deleted
+        tbdeleted = current;
+
+        // Move forward in list
+        current = current->next;
+
+        // Delete current element
+        free (tbdeleted);
+        tbdeleted = NULL;
+    }
+
+    *listptr = NULL;
+}
