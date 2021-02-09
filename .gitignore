@@ -1,5 +1,7 @@
 # This project's binary
-blinker
+tracker
+sessionlisttest
+datetest
 
 # Prerequisites
 *.d
