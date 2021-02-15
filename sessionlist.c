@@ -17,7 +17,7 @@ bool list_is_empty (sessionlist list){
 }
 
 void list_insert(sessionlist * headptr, session_data data){
-    sessionlist_node * new_node;
+    sessionlist_node * new_node = NULL;
 
     // Allocate data for the node
     new_node = (sessionlist_node *) malloc(sizeof(sessionlist_node));
