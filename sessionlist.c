@@ -4,11 +4,15 @@
 #include "debug.h"
 
 sessionlist list_create (){
-    return NULL;
+    sessionlist new_list;
+    new_list.first = NULL;
+    new_list.last = NULL;
+    new_list.count = 0;
+    return new_list;
 }
 
 bool list_is_empty (sessionlist list){
-    if (list == NULL){
+    if (list.first == NULL){
         return true;
     }
     else {
@@ -16,7 +20,7 @@ bool list_is_empty (sessionlist list){
     }
 }
 
-void list_insert(sessionlist * headptr, session_data data){
+void list_insert(sessionlist * headnode, session_data data){
     sessionlist_node * new_node;
 
     // Allocate data for the node
@@ -27,16 +31,16 @@ void list_insert(sessionlist * headptr, session_data data){
 
     // Insert node into list
     // Case 1: list is empty
-    if (*headptr == NULL){
+    if (headnode->first == NULL){
         DEBUG("list_insert, case 1 – empty list");
-        *headptr = new_node;
+        headnode->first = new_node;
         new_node->next = NULL;
     }
     // Case 2: list has content
     else {
         DEBUG("list_insert, case 2 – list has content");
-        new_node->next = *headptr;
-        *headptr = new_node;
+        new_node->next = headnode->first;
+        headnode->first = new_node;
     }
 
 }
@@ -49,7 +53,7 @@ void print_session_data (session_data data){
 void list_print_all(sessionlist list){
     sessionlist_node * current_node;
     DEBUG("list_print_all start");
-    current_node = list;
+    current_node = list.first;
 
     while (current_node != NULL){
         DEBUG("list_print_all inside loop");
@@ -63,18 +67,18 @@ void list_print_all(sessionlist list){
 
 void list_print_partial (sessionlist list, date cutoff){
     
-    while (list != NULL){
+    while (list.first != NULL){
         DEBUG("list_print_partial inside loop");
         // Check if we should print this node
-        if (!is_before(list->data.date, cutoff)){
-            print_session_data(list->data);
+        if (!is_before(list.first->data.date, cutoff)){
+            print_session_data(list.first->data);
         }
         else{
             DEBUG("list_print_partial, not printing");
         }
 
         // Go to next node
-        list = list->next;
+        list.first = list.first->next;
     }
 }
 
@@ -89,7 +93,7 @@ void remove_all_of_type (sessionlist * listptr, int exercise_type){
     sessionlist_node * current_node;
     sessionlist_node * previous_node;
 
-    current_node = *listptr;
+    current_node = listptr->first;
     previous_node = NULL;
 
     while(current_node != NULL){
@@ -99,9 +103,9 @@ void remove_all_of_type (sessionlist * listptr, int exercise_type){
             if (previous_node == NULL){
                 DEBUG("remove_all_of_type: deleting first element");
                 // First element deleted
-                *listptr = current_node->next;
+                listptr->first = current_node->next;
                 free(current_node);
-                current_node = *listptr;
+                current_node = listptr->first;
             }
             else{
                 // Other element deleted
@@ -125,7 +129,7 @@ void list_destroy (sessionlist * listptr){
     sessionlist_node * current;
     sessionlist_node * tbdeleted;
 
-    current = *listptr;
+    current = listptr->first;
 
     while (current != NULL){
         DEBUG("list_destroy: deleting element");
@@ -140,5 +144,5 @@ void list_destroy (sessionlist * listptr){
         tbdeleted = NULL;
     }
 
-    *listptr = NULL;
+    listptr->first = NULL;
 }

@@ -24,9 +24,18 @@ struct sessionlist_node_struct {
 typedef struct sessionlist_node_struct sessionlist_node;
 
 /**
+ * Datatype for the list head struct
+ */
+struct sessionlist_head_struct {
+    sessionlist_node * first;
+    sessionlist_node * last;
+    int count;
+};
+
+/**
  * Datatype for a session list.
  */
-typedef sessionlist_node * sessionlist;
+typedef struct sessionlist_head_struct sessionlist;
 
 /**
  * Function for creating a session list.
