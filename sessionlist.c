@@ -34,6 +34,7 @@ void list_insert(sessionlist * headnode, session_data data){
     if (headnode->first == NULL){
         DEBUG("list_insert, case 1 – empty list");
         headnode->first = new_node;
+        headnode->last = new_node;
         new_node->next = NULL;
     }
     // Case 2: list has content
@@ -42,6 +43,9 @@ void list_insert(sessionlist * headnode, session_data data){
         new_node->next = headnode->first;
         headnode->first = new_node;
     }
+
+    // Update the counter
+    headnode->count++;
 
 }
 
@@ -114,6 +118,13 @@ void remove_all_of_type (sessionlist * listptr, int exercise_type){
                 free(current_node);
                 current_node = previous_node->next;
             }
+            // Did we delete the last node?
+            if (current_node == NULL){
+                DEBUG("remove_all_of_type: deleted last node, updating last pointer");
+                listptr->last = previous_node;
+            }
+            // Decrease count
+            listptr->count--;
           
         }
         else{
@@ -145,4 +156,6 @@ void list_destroy (sessionlist * listptr){
     }
 
     listptr->first = NULL;
+    listptr->last = NULL;
+    listptr->count = 0;
 }

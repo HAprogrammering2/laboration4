@@ -73,6 +73,10 @@ int main(){
     VERIFY(!list_is_empty(my_list), "list is not empty");
     list_print_all(my_list);
     
+    TEST_CASE ("Delete all of type 0, to get the last element deleted");
+    remove_all_of_type(&my_list, 0);
+    VERIFY(!list_is_empty(my_list), "list is not empty");
+    list_print_all(my_list);
 
     TEST_CASE("Destroy list");
     list_destroy(&my_list);
