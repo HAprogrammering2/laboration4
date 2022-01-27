@@ -11,10 +11,6 @@ struct sessionlist_node_struct {
     struct sessionlist_node_struct * next;
 };
 
-/**
- * Datatype for one node in the session list.
- */
-typedef struct sessionlist_node_struct sessionlist_node;
 
 sessionlist list_create (){
     return NULL;
