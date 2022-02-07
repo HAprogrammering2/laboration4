@@ -39,16 +39,16 @@ clean:
 # -----------------
 # TEST TARGETS
 # -----------------
-datetest.o: datetest.c date.o
+datetest.o: datetest.c date.h
 	gcc $(CFLAGS) -c datetest.c -o datetest.o
 
-sessionlisttest.o: sessionlisttest.c sessionlist.o date.o
+sessionlisttest.o: sessionlisttest.c sessionlist.h date.h
 	gcc $(CFLAGS) -c sessionlisttest.c -o sessionlisttest.o
 
-datetest$(EXEEXT): datetest.o
+datetest$(EXEEXT): datetest.o date.o 
 	gcc $(CFLAGS) datetest.o date.o -o datetest
 
-sessionlisttest$(EXEEXT): sessionlisttest.o
+sessionlisttest$(EXEEXT): sessionlisttest.o sessionlist.o date.o
 	gcc $(CFLAGS) sessionlisttest.o sessionlist.o date.o -o sessionlisttest
 
 test: datetest$(EXEEXT) sessionlisttest$(EXEEXT)
